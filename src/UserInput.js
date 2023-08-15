@@ -11,16 +11,12 @@ import Select from 'react-select';
 // - pass fetched/filtered recipes back to app.js and then to DisplayRecipes.js as props
 
 const UserInput = () => {
-        const [userSelection, setUserSelection] = useState([]);
-        const handleUserSelection = (event) => { 
-            setUserSelection(event.target.value);
-        }
+    const [userSelection, setUserSelection] = useState([]);
+    const handleUserSelection = (event) => { 
+        setUserSelection([event.value]);
+    }
 
     console.log(userSelection);
-
-    const handleUserInputChange = () => { 
-
-    }
 
     const dietOptions = [
         { value: 'dairy-free', label: 'Dairy-Free' },
@@ -50,7 +46,6 @@ const UserInput = () => {
         { value: 'drinks', label: 'Drinks' },
     ]
 
-
     const cuisineOptions = [
         { value: 'american', label: 'American' },
         { value: 'asian', label: 'Asian' },
@@ -63,21 +58,23 @@ const UserInput = () => {
 
     return (
         <>
-        <h2>Choose your preferences</h2>
+        {/* <h2>Choose your preferences</h2> */}
         <div className="userInputForm">
-            <form onClick={handleUserSelection}>
+            <form>
                 <label htmlFor="userInput">Choose your diet preferences: </label>
                 <Select 
-                value={userSelection}
+                defaultValue={userSelection}
+                isMulti
                 onChange={handleUserSelection}
                 id="dietPreference" 
                 name="dietPreference"
-                options={dietOptions}> 
+                options={dietOptions}>
                 </Select>
 
                 <label htmlFor="userInput">Choose your meal preferences: </label>
                 <Select 
-                value={userSelection}
+                defaultValue={userSelection}
+                isMulti
                 onChange={handleUserSelection}
                 id="mealPreference" 
                 name="mealPreference"
@@ -86,7 +83,8 @@ const UserInput = () => {
 
                 <label htmlFor="userInput">Choose your meal type: </label>
                 <Select 
-                value={userSelection}
+                defaultValue={userSelection}
+                isMulti
                 onChange={handleUserSelection}
                 id="mealTypePreference" 
                 name="mealTypePreference"
@@ -95,7 +93,8 @@ const UserInput = () => {
 
                 <label htmlFor="userInput">Choose your cuisine: </label>
                 <Select 
-                value={userSelection}
+                defaultValue={userSelection}
+                isMulti
                 onChange={handleUserSelection}
                 id="mealTypePreference" 
                 name="mealTypePreference"
