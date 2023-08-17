@@ -8,16 +8,21 @@ html { box-sizing: border-box;}
 
 
 .appContainer { 
+  /* background-image: url(../assets/restaurant-mural-wallpaper_23-2148703851.avif);
+  background-position: center;
+  background-size: cover; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 7%;
+  color: rgb(31, 23, 101);
 }
 
 .app { 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: rgb(145, 187, 241);
   color: rgb(0, 0, 0);
   width: 80vw;
@@ -25,6 +30,7 @@ html { box-sizing: border-box;}
   border-radius: 15px;
   padding: 5%;
 }
+
 
 .userInputForm { 
   padding: 2%;

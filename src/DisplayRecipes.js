@@ -1,16 +1,18 @@
 // DisplayRecipes.js
 
-const DisplayRecipes = () => {
+const DisplayRecipes = (recipes) => {
 
     return (
-
-        <div className="displayRecipes">
-            <h4> Here is your recipe. Enjoy!</h4>
-            <img />
-            <h3> Recipe Name</h3>
-        </div>
+        <section>
+            {recipes.length === 0 ? (
+            <h2>Sorry! Your criteria did not match any of our recipes.</h2>
+            ): (
+            <>
+            <h2>Here are your recipes!</h2>
+            </>
+            )}
+        </section>
     );
-
 }
 
 export default DisplayRecipes;

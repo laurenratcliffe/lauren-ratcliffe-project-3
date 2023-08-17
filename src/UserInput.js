@@ -10,38 +10,39 @@ import Select from 'react-select';
 // - call the getRecipes function and pass the user inputs as arguments when the user submits the form
 // - pass fetched/filtered recipes back to app.js and then to DisplayRecipes.js as props
 
-const UserInput = () => {
+const UserInput = (props) => {
     const [userSelection, setUserSelection] = useState([]);
     const handleUserSelection = (event) => { 
         setUserSelection([event.value]);
     }
 
-    console.log(userSelection);
+    // console.log(userSelection);
 
     const dietOptions = [
         { value: 'dairy-free', label: 'Dairy-Free' },
-        { value: 'fodmap-free', label: 'FODMAP-Free' },
         { value: 'gluten-free', label: 'Gluten-Free' },
-        { value: 'keto-friendly', label: 'Keto-Friendly' },
-        { value: 'low-sugar', label: 'Low-Sugar' },
+        { value: 'ketogenic', label: 'Ketogenic' },
+        { value: 'low-FODMAP', label: 'Low-FODMAP' },
         { value: 'paleo', label: 'Paleo' },
-        { value: 'peanut-free', label: 'Peanut-Free' },
+        { value: 'pescatarian', label: 'Pescatarian' },
         { value: 'vegan', label: 'Vegan' },
         { value: 'vegetarian', label: 'Vegetarian' },
     ]
 
-    const mealOptions = [
-        { value: 'balanced', label: 'Balanced' },
-        { value: 'highProtein', label: 'High-Protein' },
-        { value: 'lowCarb', label: 'Low-Carb' },
-        { value: 'lowFat', label: 'Low-Fat' },
-        { value: 'lowSodium', label: 'Low-Sodium' },
-    ]
+    // const mealOptions = [
+    //     { value: 'balanced', label: 'Balanced' },
+    //     { value: 'highProtein', label: 'High-Protein' },
+    //     { value: 'lowCarb', label: 'Low-Carb' },
+    //     { value: 'lowFat', label: 'Low-Fat' },
+    //     { value: 'lowSodium', label: 'Low-Sodium' },
+    // ]
 
     const mealTypeOptions = [
         { value: 'breakfast', label: 'Breakfast' },
         { value: 'lunch', label: 'Lunch' },
         { value: 'dinner', label: 'Dinner' },
+        { value: 'salad', label: 'Salad' },
+        { value: 'side dish', label: 'Side Dish' },
         { value: 'snack', label: 'Snack' },
         { value: 'drinks', label: 'Drinks' },
     ]
@@ -49,8 +50,11 @@ const UserInput = () => {
     const cuisineOptions = [
         { value: 'american', label: 'American' },
         { value: 'asian', label: 'Asian' },
+        { value: 'caribbean', label: 'Carribean' },
         { value: 'french', label: 'French' },
+        { value: 'german', label: 'German' },
         { value: 'greek', label: 'Greek' },
+        { value: 'indian', label: 'Indian' },
         { value: 'italian', label: 'Italian' },
         { value: 'mexican', label: 'Mexican' },
         { value: 'middleEastern', label: 'Middle Eastern' },
@@ -60,33 +64,33 @@ const UserInput = () => {
         <>
         {/* <h2>Choose your preferences</h2> */}
         <div className="userInputForm">
-            <form>
-                <label htmlFor="userInput">Choose your diet preferences: </label>
+            <form onSubmit={(event) => props.getRecipes(event)}>
+                <label htmlFor="recipeFilterSelection">Choose your diet preferences: </label>
                 <Select 
                 defaultValue={userSelection}
                 isMulti
                 onChange={handleUserSelection}
-                id="dietPreference" 
+                id="recipeFilterSelection" 
                 name="dietPreference"
                 options={dietOptions}>
                 </Select>
 
-                <label htmlFor="userInput">Choose your meal preferences: </label>
+                {/* <label htmlFor="userInput">Choose your meal preferences: </label>
                 <Select 
                 defaultValue={userSelection}
                 isMulti
                 onChange={handleUserSelection}
-                id="mealPreference" 
+                id="recipeFilterSelection" 
                 name="mealPreference"
                 options={mealOptions}> 
-                </Select>
+                </Select> */}
 
                 <label htmlFor="userInput">Choose your meal type: </label>
                 <Select 
                 defaultValue={userSelection}
                 isMulti
                 onChange={handleUserSelection}
-                id="mealTypePreference" 
+                id="recipeFilterSelection" 
                 name="mealTypePreference"
                 options={mealTypeOptions}> 
                 </Select>
@@ -96,10 +100,11 @@ const UserInput = () => {
                 defaultValue={userSelection}
                 isMulti
                 onChange={handleUserSelection}
-                id="mealTypePreference" 
+                id="recipeFilterSelection" 
                 name="mealTypePreference"
                 options={cuisineOptions}> 
                 </Select>
+                <button type="submit">Find me a recipe!</button>
             </form>
         </div>
         </>
