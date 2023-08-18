@@ -20,8 +20,7 @@ function App() {
 
   useEffect (() => {
     axios({
-      // url: "https://api.edamam.com/api/recipes/v2?type=public&app_id=f9d938b5&app_key=9eda799447f92c7c378ad72894d88028%20%09&health=gluten-free&mealType=Dinner",
-      url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=266270d321e7430f975492e4c10ea228&intolerances=${diet}&${dishType}&${cuisine}&instructionsRequired=true&addRecipeInformation=true&sort=random&number=1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=${app_key}&intolerances=${diet}&${dishType}&${cuisine}&instructionsRequired=true&addRecipeInformation=true&sort=random&number=1",
       method: "GET",
       dataResponse: "json",
       params: { 
@@ -31,14 +30,7 @@ function App() {
           cuisine: "indian",
 
       }
-      // params: { 
-      //   // type: "public",
-      //   // app_id: "f9d938b5",
-      //   // app_key: "9eda799447f92c7c378ad72894d88028",
-      //   // mealType: "dinner",
-      //   // health: "gluten-free",
-      //   // responses: 100,
-      // }
+     
     }).then((res) => { 
       const recipes = res.data;
       setAllRecipes(recipes);
