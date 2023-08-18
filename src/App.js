@@ -19,29 +19,35 @@ function App() {
   const [selectedCuisine, setSelectedCuisine] = useState([]);
 
   useEffect (() => {
+    fetchRandomRecipe();
+  }, [selectedDiet, selectedDishType, selectedCuisine])
+
+  const fetchRandomRecipe = () => { 
     axios({
-      url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=${app_key}&intolerances=${diet}&${dishType}&${cuisine}&instructionsRequired=true&addRecipeInformation=true&sort=random&number=1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&intolerances=${diet}&${dishType}&${cuisine}&instructionsRequired=true&addRecipeInformation=true&sort=random&number=1",
       method: "GET",
       dataResponse: "json",
       params: { 
-          app_key: process.env.REACT_APP_API_KEY,
-          diet: "ketogenic", 
-          dishType: "breakfast",
-          cuisine: "indian",
+          apiKey: process.env.REACT_APP_API_KEY,
+          diet: selectedDiet,
+          dishType: selectedDishType,
+          cuisine: selectedCuisine,
 
       }
      
     }).then((res) => { 
-      const recipes = res.data;
+      const recipes = res.data.results;
       setAllRecipes(recipes);
-    })
-  }, [])
+    });
+  };
+    
+  
 
   console.log(allRecipes)
 
   const getRecipes = (event) => { 
     event.preventDefault();
-    console.log('getting recipes');
+    fetchRandomRecipe();
   }
 
   const handleDietSelection = (userSelection) => { 
@@ -60,8 +66,15 @@ function App() {
     <div className='appContainer'>
       <h1>RECIPE GENERATOR</h1>
       <div className='app'> 
-        <UserInput getRecipes={getRecipes}/>
-        <DisplayRecipes/>
+        <UserInput 
+        selectedDiet={selectedDiet}
+        selectedDishType={selectedDishType}
+        selectedCuisine={selectedCuisine}
+        onDietChange={handleDietSelection}
+        onDishTypeChange={handleDishTypeSelection}
+        onCuisineChange={handleCuisineSelection}
+        getRecipes={getRecipes}/>
+        <DisplayRecipes recipe={allRecipes[0]}/>
       </div>
     </div>
   );

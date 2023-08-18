@@ -38,7 +38,6 @@ const UserInput = (props) => {
     // ]
 
     const mealTypeOptions = [
-        { value: 'breakfast', label: 'Breakfast' },
         { value: 'lunch', label: 'Lunch' },
         { value: 'dinner', label: 'Dinner' },
         { value: 'salad', label: 'Salad' },
@@ -60,6 +59,9 @@ const UserInput = (props) => {
         { value: 'middleEastern', label: 'Middle Eastern' },
     ]
 
+    const handleRecipeRefresh = () => { 
+        window.location.reload();
+    }
     return (
         <>
         {/* <h2>Choose your preferences</h2> */}
@@ -104,9 +106,9 @@ const UserInput = (props) => {
                 name="mealTypePreference"
                 options={cuisineOptions}> 
                 </Select>
-                <button type="submit">Find me a recipe!</button>
             </form>
         </div>
+        <button className="submitButton" type="submit" onClick={handleRecipeRefresh}>Find me a recipe!</button>
         </>
     );
 }

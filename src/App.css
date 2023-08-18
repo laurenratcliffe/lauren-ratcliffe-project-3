@@ -23,21 +23,37 @@ html { box-sizing: border-box;}
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(145, 187, 241);
   color: rgb(0, 0, 0);
-  width: 80vw;
-  height: 80vh;
   border-radius: 15px;
   padding: 5%;
 }
 
-
+.generatedRecipe { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(229, 229, 243);
+  padding: 5%;
+  margin-top: 2%;
+  border-radius: 5px;
+}
 .userInputForm { 
-  padding: 2%;
+  background-color: rgb(229, 229, 243);
+  padding: 5%;
+  margin-bottom: 2%;
+  border-radius: 5px;
 }
 
 .displayRecipes { 
   border: solid 1px black;
+}
+
+.submitButton { 
+  width: 30%;
+  padding: 2%;
+  border-radius: 2px;
+  box-shadow: none;
 }
 
 
