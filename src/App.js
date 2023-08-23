@@ -20,11 +20,11 @@ function App() {
 
   useEffect (() => {
     fetchRandomRecipe();
-  }, [selectedDiet, selectedDishType, selectedCuisine])
+  },[selectedDiet, selectedDishType, selectedCuisine])
 
   const fetchRandomRecipe = () => { 
     axios({
-      url: "https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&intolerances=${diet}&${dishType}&${cuisine}&instructionsRequired=true&addRecipeInformation=true&sort=random&number=1",
+      url: `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&veryPopular=true&addRecipeInformation=true&sort=random&number=1`,
       method: "GET",
       dataResponse: "json",
       params: { 
@@ -32,7 +32,6 @@ function App() {
           diet: selectedDiet,
           dishType: selectedDishType,
           cuisine: selectedCuisine,
-
       }
      
     }).then((res) => { 

@@ -59,9 +59,7 @@ const UserInput = (props) => {
         { value: 'middleEastern', label: 'Middle Eastern' },
     ]
 
-    const handleRecipeRefresh = () => { 
-        window.location.reload();
-    }
+    
     return (
         <>
         {/* <h2>Choose your preferences</h2> */}
@@ -108,7 +106,7 @@ const UserInput = (props) => {
                 </Select>
             </form>
         </div>
-        <button className="submitButton" type="submit" onClick={handleRecipeRefresh}>Find me a recipe!</button>
+        <button className="submitButton" type="submit">Find me a recipe!</button>
         </>
     );
 }
