@@ -11,12 +11,23 @@ import Select from 'react-select';
 // - pass fetched/filtered recipes back to app.js and then to DisplayRecipes.js as props
 
 const UserInput = (props) => {
-    const [userSelection, setUserSelection] = useState([]);
-    const handleUserSelection = (event) => { 
-        setUserSelection([event.value]);
+    const [selectedDiet, setSelectedDiet] = useState([]);
+    const [selectedMealType, setSelectedMealType] = useState([]);
+    const [selectedCuisine, setSelectedCuisine] = useState([]);
+
+    const handleDietSelection = (selectedDiet) => { 
+        props.onDietChange(selectedDiet.map(option => option.value));
     }
 
-    // console.log(userSelection);
+    const handleMealTypeSelection = (selectedMealType) => { 
+        props.onMealTypeChange(selectedMealType.map(option => option.value));;
+    }
+
+    const handleCuisineSelection = (selectedCuisine) => { 
+        props.onCuisineChange(selectedCuisine.map(option => option.value));
+    }
+
+    const unselectedOptions = []
 
     const dietOptions = [
         { value: 'dairy-free', label: 'Dairy-Free' },
@@ -67,9 +78,10 @@ const UserInput = (props) => {
             <form onSubmit={(event) => props.getRecipes(event)}>
                 <label htmlFor="recipeFilterSelection">Choose your diet preferences: </label>
                 <Select 
-                defaultValue={userSelection}
+                defaultValue={unselectedOptions}
                 isMulti
-                onChange={handleUserSelection}
+                onChange={handleDietSelection}
+                value={selectedDiet.map(value => ({ value, label: value }))}
                 id="recipeFilterSelection" 
                 name="dietPreference"
                 options={dietOptions}>
@@ -87,9 +99,10 @@ const UserInput = (props) => {
 
                 <label htmlFor="userInput">Choose your meal type: </label>
                 <Select 
-                defaultValue={userSelection}
+                defaultValue={unselectedOptions}
                 isMulti
-                onChange={handleUserSelection}
+                onChange={handleMealTypeSelection}
+                value={selectedMealType}
                 id="recipeFilterSelection" 
                 name="mealTypePreference"
                 options={mealTypeOptions}> 
@@ -97,16 +110,19 @@ const UserInput = (props) => {
 
                 <label htmlFor="userInput">Choose your cuisine: </label>
                 <Select 
-                defaultValue={userSelection}
+                defaultValue={unselectedOptions}
                 isMulti
-                onChange={handleUserSelection}
+                onChange={handleCuisineSelection}
+                value={selectedCuisine}
                 id="recipeFilterSelection" 
                 name="mealTypePreference"
                 options={cuisineOptions}> 
                 </Select>
+
+            <button className="submitButton" type="submit">Find me a recipe!</button>
             </form>
         </div>
-        <button className="submitButton" type="submit">Find me a recipe!</button>
+        
         </>
     );
 }

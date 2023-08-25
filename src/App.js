@@ -14,13 +14,13 @@ import DisplayRecipes from './DisplayRecipes';
 
 function App() {
   const [allRecipes, setAllRecipes] = useState([]);
-  const [selectedDiet, setSelectedDiet] = useState([]);
-  const [selectedDishType, setSelectedDishType] = useState([]);
+  const [selectedDiet, setSelectedDiet] = useState([""]);
+  const [selectedMealType, setSelectedMealType] = useState([]);
   const [selectedCuisine, setSelectedCuisine] = useState([]);
 
   useEffect (() => {
     fetchRandomRecipe();
-  },[selectedDiet, selectedDishType, selectedCuisine])
+  },[selectedDiet, selectedMealType, selectedCuisine])
 
   const fetchRandomRecipe = () => { 
     axios({
@@ -29,9 +29,9 @@ function App() {
       dataResponse: "json",
       params: { 
           apiKey: process.env.REACT_APP_API_KEY,
-          diet: selectedDiet,
-          dishType: selectedDishType,
-          cuisine: selectedCuisine,
+          diet: selectedDiet.join(','),
+          dishType: selectedMealType.join(','),
+          cuisine: selectedCuisine.join(','),
       }
      
     }).then((res) => { 
@@ -49,30 +49,31 @@ function App() {
     fetchRandomRecipe();
   }
 
-  const handleDietSelection = (userSelection) => { 
-    setSelectedDiet(userSelection);
-  }
+  const handleDietSelection = (selectedOptions) => { 
+    setSelectedDiet(selectedOptions);
+}
 
-  const handleDishTypeSelection = (userSelection) => { 
-    setSelectedDishType(userSelection);
-  }
+const handleMealTypeSelection = (selectedOptions) => { 
+    setSelectedMealType(selectedOptions);
+}
 
-  const handleCuisineSelection = (userSelection) => { 
-    setSelectedCuisine(userSelection);
-  }
+const handleCuisineSelection = (selectedOptions) => { 
+    setSelectedCuisine(selectedOptions);
+}
 
   return (
     <div className='appContainer'>
       <h1>RECIPE GENERATOR</h1>
       <div className='app'> 
         <UserInput 
-        selectedDiet={selectedDiet}
-        selectedDishType={selectedDishType}
-        selectedCuisine={selectedCuisine}
-        onDietChange={handleDietSelection}
-        onDishTypeChange={handleDishTypeSelection}
-        onCuisineChange={handleCuisineSelection}
-        getRecipes={getRecipes}/>
+         selectedDiet={selectedDiet}
+         selectedMealType={selectedMealType}
+         selectedCuisine={selectedCuisine}
+         onDietChange={handleDietSelection}
+         onMealTypeChange={handleMealTypeSelection}
+         onCuisineChange={handleCuisineSelection}
+         getRecipes={getRecipes}
+        />
         <DisplayRecipes recipe={allRecipes[0]}/>
       </div>
     </div>

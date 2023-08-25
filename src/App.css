@@ -37,6 +37,7 @@ html { box-sizing: border-box;}
   padding: 5%;
   margin-top: 2%;
   border-radius: 5px;
+  min-width: 80vw;
 }
 .userInputForm { 
   background-color: rgb(229, 229, 243);
