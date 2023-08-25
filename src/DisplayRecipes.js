@@ -11,7 +11,7 @@ const DisplayRecipes = ({recipe}) => {
             {recipe ? (
             <>
             <div className="generatedRecipe">
-            <h2>Check out this recipe!</h2>
+            <h2>CHECK OUT THIS RECIPE!</h2>
                 <div className="recipeContainer">
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
@@ -36,7 +36,7 @@ const DisplayRecipes = ({recipe}) => {
                         ))}
                     </ul>
                 </div>
-                <button onClick={handleRecipeRefresh}>Let's try another!</button>
+                <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
             </>
             ): (
