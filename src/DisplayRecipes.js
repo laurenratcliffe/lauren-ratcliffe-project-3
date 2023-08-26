@@ -15,6 +15,8 @@ const DisplayRecipes = ({recipe}) => {
                 <div className="recipeContainer">
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
+                <p>Ready in {recipe.readyInMinutes} minutes!</p>
+                <a href={recipe.sourceUrl}>Source</a>
                 {/* <h4>Ingredients</h4>
                     <ul>
                         {recipe.analyzedInstructions[0].steps.map((step) => (
@@ -29,12 +31,12 @@ const DisplayRecipes = ({recipe}) => {
                                     </li>
                                 ))}
                     </ul> */}
-                <h4>Instructions</h4>
+                {/* <h4>Instructions</h4>
                     <ul>
                         {recipe.analyzedInstructions[0].steps.map((step) => (
                         <li key={recipe.id}>{step.step}</li>
                         ))}
-                    </ul>
+                    </ul> */}
                 </div>
                 <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>

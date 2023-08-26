@@ -47,22 +47,34 @@ p {
 .generatedRecipe { 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  /* background-color: rgb(229, 229, 243); */
   padding: 5%;
   margin-top: 2%;
   border-radius: 5px;
   min-width: 90vw;
 }
-
+.generatedRecipe img { 
+  display: flex;
+  align-items: center;
+}
 .generatedRecipe h2 { 
   text-decoration: underline;
   text-decoration-color: #086375;
   text-underline-offset: 10px;
 }
-.userInputForm { 
-  border-radius: 5px;
+
+.generatedRecipe h3, 
+.generatedRecipe p, 
+.generatedRecipe a { 
+  text-align: center;
+  color: black;
+}
+
+.userInputForm button { 
+  background-color: #F6828C;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 1.5%;
 }
 
 .userInputForm > form:nth-child(1) {
