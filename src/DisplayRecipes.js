@@ -17,7 +17,7 @@ const DisplayRecipes = ({recipe, getNewRecipe}) => {
                 <h3>{recipe.title}</h3>
                 <button>Instructions</button>
                 <p>Ready in {recipe.readyInMinutes} minutes!</p>
-                <a href={recipe.sourceUrl} target="_blank">Source</a>
+                <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">Source</a>
                 
                 {/* <h4>Ingredients</h4>
                     <ul>
