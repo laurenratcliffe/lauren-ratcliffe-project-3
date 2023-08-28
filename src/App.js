@@ -25,7 +25,7 @@ function App() {
 
   const fetchRandomRecipe = () => { 
       axios({
-        url: `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&veryPopular=true&addRecipeInformation=true&sort=random&number=1`,
+        url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&instructionsRequired=true&veryPopular=true&addRecipeInformation=true&sort=random&number=1`,
         method: "GET",
         dataResponse: "json",
         params: { 
