@@ -1,6 +1,4 @@
-// General Structure/Styling
-// - create general component framing (html/css) to create apps user inputs and the section to display filtered recipes
-// - define useState variables for user inputs such as dietary restrictions, meal type, cuisine type
+
 
 // App.js 
 // - render UserInput.js and DisplayRecipes.js to app.js
