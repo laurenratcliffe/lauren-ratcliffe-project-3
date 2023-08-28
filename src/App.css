@@ -13,19 +13,18 @@ body {
 
 h1 {
   padding: 0;
-  line-height: 0em;
+  line-height: 1.5em;
   text-decoration: underline;
   text-decoration-color: #086375;
   text-underline-offset: 10px;
+  word-break: normal;
+  text-align: center;
 }
 
 p { 
   max-width: 80vw;
 }
 .appContainer { 
-  /* background-image: url(../assets/restaurant-mural-wallpaper_23-2148703851.avif);
-  background-position: center;
-  background-size: cover; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,11 +63,15 @@ p {
 
 .generatedRecipe button { 
   margin-top: 5%;
+  /* min-width: 40vw;
+  padding: 2%; */
 }
 .generatedRecipe h2 { 
   text-decoration: underline;
   text-decoration-color: #086375;
   text-underline-offset: 10px;
+  line-height: 1.5em;
+  text-align: center;
 }
 
 .recipeContainer { 
@@ -93,6 +96,7 @@ p {
   border: none;
   padding: 2.5%;
   border-radius: 5px;
+  min-width: 40vw;
 }
 
 .userInputForm > form:nth-child(1) {
@@ -122,8 +126,28 @@ button {
   border-radius: 5px;
   padding: 2.5%;
   cursor: pointer;
+  min-width: 30vw;
+  margin-top: 2%;
+  margin-right: 20vw;
+  margin-left: 20vw;
 }
 
 #recipeFilterSelection { 
   margin-bottom: 2%;
 }
+
+
+.noRecipesFound { 
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* .noRecipesFound button { 
+  background-color: #F6828C;
+  border: none;
+  border-radius: 5px;
+  padding: 2.5%;
+  cursor: pointer;
+} */

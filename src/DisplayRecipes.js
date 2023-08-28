@@ -1,10 +1,12 @@
 // DisplayRecipes.js
 
-const DisplayRecipes = ({recipe, getNewRecipe}) => {
+const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
 
     const handleRecipeRefresh = () => { 
         getNewRecipe();
     }
+
+    
 
     return (
         <section>
@@ -42,11 +44,11 @@ const DisplayRecipes = ({recipe, getNewRecipe}) => {
                 </div>
                 <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
-            
             </>
             ): (
-            <h2>Sorry! Your criteria did not match any of our recipes.</h2>
+            handleNoRecipesFound()
             )}
+            
         </section>
     );
 }

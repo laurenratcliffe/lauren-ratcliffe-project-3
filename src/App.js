@@ -44,18 +44,28 @@ function App() {
 
 
     console.log(allRecipes);
- 
-
-  // const getRecipes = (event) => { 
-  //   event.preventDefault();
-  //   fetchRandomRecipe();
-  //   setDisplayRecipe(true);
-  // }
   
   const handleGetRecipes = () => {
     setDisplayRecipe(true); 
     fetchRandomRecipe(); 
   };
+
+  const handleNoRecipesFound = () => { 
+    const handleNewSearch = () => { 
+      window.location.reload();
+    }
+    // if (selectedDiet.length === 0 || selectedDishType.length === 0 || selectedCuisine.length === 0) 
+    if (!displayRecipe){
+      return null;
+    } else {
+      return (
+        <div className="noRecipesFound">
+          <p>Sorry! Your criteria didn't match any of our recipes.</p>
+          <button onClick={handleNewSearch}>Try another search</button>
+        </div>
+      );
+    }
+  }
 
   const handleDietSelection = (selectedOptions) => { 
     setSelectedDiet(selectedOptions);
@@ -86,12 +96,12 @@ const handleCuisineSelection = (selectedOptions) => {
          onCuisineChange={handleCuisineSelection}
          getRecipes={handleGetRecipes}
         />
-
-        {displayRecipe && allRecipes.length > 0 ? (
-          <DisplayRecipes 
-          recipe={allRecipes[0]}
-          getNewRecipe={fetchRandomRecipe}/>
-        ) : null}
+        <DisplayRecipes 
+        recipe={allRecipes[0]}
+        getNewRecipe={fetchRandomRecipe}
+        handleNoRecipesFound={handleNoRecipesFound}
+        />
+        
 
       </div>
     </div>
