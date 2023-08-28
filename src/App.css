@@ -53,7 +53,7 @@ p {
   margin-top: 2%;
   border-radius: 5px;
   min-width: 80vw;
-  /* background-color: white; */
+  background-color: white;
   border: solid 1px #086375;
 }
 .generatedRecipe img { 

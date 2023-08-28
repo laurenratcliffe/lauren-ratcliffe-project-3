@@ -1,9 +1,9 @@
 // DisplayRecipes.js
 
-const DisplayRecipes = ({recipe}) => {
+const DisplayRecipes = ({recipe, getNewRecipe}) => {
 
     const handleRecipeRefresh = () => { 
-        window.location.reload();
+        getNewRecipe();
     }
 
     return (
@@ -17,7 +17,7 @@ const DisplayRecipes = ({recipe}) => {
                 <h3>{recipe.title}</h3>
                 <button>Instructions</button>
                 <p>Ready in {recipe.readyInMinutes} minutes!</p>
-                <a href={recipe.sourceUrl}>Source</a>
+                <a href={recipe.sourceUrl} target="_blank">Source</a>
                 
                 {/* <h4>Ingredients</h4>
                     <ul>
@@ -40,8 +40,9 @@ const DisplayRecipes = ({recipe}) => {
                         ))}
                     </ul> */}
                 </div>
+                <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
-            <button onClick={handleRecipeRefresh}>Try a new search!</button>
+            
             </>
             ): (
             <h2>Sorry! Your criteria did not match any of our recipes.</h2>

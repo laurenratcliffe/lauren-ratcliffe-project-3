@@ -24,7 +24,6 @@ function App() {
   },[selectedDiet, selectedCuisine, selectedDishType])
 
   const fetchRandomRecipe = () => { 
-    if (displayRecipe) {
       axios({
         url: `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&veryPopular=true&addRecipeInformation=true&sort=random&number=1`,
         method: "GET",
@@ -41,7 +40,6 @@ function App() {
         setAllRecipes(recipes);
         console.log(recipes)
       });
-    };
     }
 
 
@@ -90,7 +88,9 @@ const handleCuisineSelection = (selectedOptions) => {
         />
 
         {displayRecipe && allRecipes.length > 0 ? (
-          <DisplayRecipes recipe={allRecipes[0]} />
+          <DisplayRecipes 
+          recipe={allRecipes[0]}
+          getNewRecipe={fetchRandomRecipe}/>
         ) : null}
 
       </div>
