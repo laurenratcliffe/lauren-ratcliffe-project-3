@@ -54,7 +54,7 @@ function App() {
     const handleNewSearch = () => { 
       window.location.reload();
     }
-    // if (selectedDiet.length === 0 || selectedDishType.length === 0 || selectedCuisine.length === 0) 
+    
     if (!displayRecipe){
       return null;
     } else {

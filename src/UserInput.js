@@ -53,12 +53,16 @@ const UserInput = (props) => {
     ]
 
     const dishTypeOptions = [
-        { value: 'main course', label: 'Main Course' },
+        { value: 'appetizer', label: 'Appetizer' },
         { value: 'breakfast', label: 'Breakfast' },
+        { value: 'beverage', label: 'Beverage' },
+        { value: 'dessert', label: 'Dessert' },
+        { value: 'main course', label: 'Main Course' },
+        { value: 'marinade', label: 'Marinade' },
         { value: 'salad', label: 'Salad' },
         { value: 'side dish', label: 'Side Dish' },
+        { value: 'snack', label: 'Snack' },
         { value: 'soup', label: 'Soup' },
-        { value: 'beverage', label: 'Beverage' },
     ]
 
     const cuisineOptions = [

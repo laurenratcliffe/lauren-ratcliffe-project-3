@@ -1,13 +1,74 @@
 // DisplayRecipes.js
-
+import axios from "axios";
+import {useState} from 'react'
 const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
+    const [detailedRecipe, setDetailedRecipe] = useState([]);
+    const [showInstructions, setShowInstructions] = useState(false);
 
+    const fetchDetailedRecipe = (recipeId) => {
+        axios({
+          url: `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`,
+          method: "GET",
+        }).then((res) => {
+          const detailedRecipeData = res.data;
+        //   const recipeId = recipe.id;
+        //   console.log(recipeId)
+          console.log(detailedRecipeData);
+          setDetailedRecipe(detailedRecipeData);
+        });
+      };
+    
     const handleRecipeRefresh = () => { 
-        getNewRecipe();
+        // getNewRecipe();
+        window.location.reload();
     }
 
-    
+    const calculatedMinutes = () => { 
+        const minutes = recipe.readyInMinutes
 
+        if (minutes >= 60) { 
+            return (
+                <p> Ready in 1 hour and {minutes - 60} minutes</p>
+            )
+        } else if (minutes === 60) { 
+            return (
+                <p> Ready in 1 hour</p>
+            )
+        } else { 
+            return (
+                <p> Ready in {minutes} minutes </p>
+            )
+        }
+    }
+
+
+    const displayDetailedInstructions = () => { 
+        if (showInstructions && Object.keys(detailedRecipe).length > 0) {
+            return (
+              <div className="detailedInstructionsOverlay">
+                <div className="detailedInstructions">
+                <h4>Ingredients</h4>
+                    <ul>
+                    {detailedRecipe.extendedIngredients.map((ingredient) => (
+                    <li key={ingredient.id}>{ingredient.original}</li>
+                    ))}
+                </ul>
+
+                <h4>Instructions</h4>
+                    <ol>
+                        {detailedRecipe.analyzedInstructions[0]?.steps.map((step) => (
+                        <li key={step.number}>{step.step}</li>
+                        ))}
+                    </ol>
+                </div>
+                <button onClick={() => setShowInstructions(false)}>Close</button>
+              </div>
+            )
+          } else {
+            return null;
+          } 
+    }
+    
     return (
         <section>
             {recipe ? (
@@ -17,38 +78,17 @@ const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
                 <div className="recipeContainer">
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
-                <button>Instructions</button>
-                <p>Ready in {recipe.readyInMinutes} minutes!</p>
+                {calculatedMinutes()}
                 <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">Source</a>
-                
-                {/* <h4>Ingredients</h4>
-                    <ul>
-                        {recipe.analyzedInstructions[0].steps.map((step) => (
-                                    <li key={step.number}>
-                                        {step.ingredients.length > 0 && (
-                                            <ul>
-                                                {step.ingredients.map((ingredient) => (
-                                                    <li key={ingredient.id}>{ingredient.name}</li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </li>
-                                ))}
-                    </ul> */}
-                {/* <h4>Instructions</h4>
-                    <ul>
-                        {recipe.analyzedInstructions[0].steps.map((step) => (
-                        <li key={recipe.id}>{step.step}</li>
-                        ))}
-                    </ul> */}
+                <button onClick={() => { fetchDetailedRecipe(recipe.id); setShowInstructions(true)}}>Instructions</button>
                 </div>
+                {displayDetailedInstructions()}
                 <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
             </>
             ): (
             handleNoRecipesFound()
             )}
-            
         </section>
     );
 }
