@@ -79,7 +79,7 @@ const UserInput = (props) => {
         <div className="userInputForm">
             <form onSubmit={handleSubmit}>
                 <div className="filterInput">
-                <label htmlFor="recipeFilterSelection">Choose your diet preferences: </label>
+                <label >Choose your diet preferences: </label>
                 <Select 
                 defaultValue={selectedDiet}
                 isMulti
