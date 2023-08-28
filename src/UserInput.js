@@ -36,7 +36,7 @@ const UserInput = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.getRecipes(); // Trigger the API call
+        props.getRecipes(); 
     };
 
     const unselectedOptions = []
@@ -51,14 +51,6 @@ const UserInput = (props) => {
         { value: 'vegan', label: 'Vegan' },
         { value: 'vegetarian', label: 'Vegetarian' },
     ]
-
-    // const mealOptions = [
-    //     { value: 'balanced', label: 'Balanced' },
-    //     { value: 'highProtein', label: 'High-Protein' },
-    //     { value: 'lowCarb', label: 'Low-Carb' },
-    //     { value: 'lowFat', label: 'Low-Fat' },
-    //     { value: 'lowSodium', label: 'Low-Sodium' },
-    // ]
 
     const dishTypeOptions = [
         { value: 'main course', label: 'Main Course' },
@@ -82,10 +74,8 @@ const UserInput = (props) => {
         { value: 'middleEastern', label: 'Middle Eastern' },
     ]
 
-    
     return (
         <>
-        {/* <h2>Choose your preferences</h2> */}
         <div className="userInputForm">
             <form onSubmit={handleSubmit}>
                 <div className="filterInput">

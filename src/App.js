@@ -39,6 +39,7 @@ function App() {
       }).then((res) => { 
         const recipes = res.data.results;
         setAllRecipes(recipes);
+        console.log(recipes)
       });
     };
     }

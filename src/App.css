@@ -48,14 +48,22 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 5%;
   margin-top: 2%;
   border-radius: 5px;
-  min-width: 90vw;
+  min-width: 80vw;
+  /* background-color: white; */
+  border: solid 1px #086375;
 }
 .generatedRecipe img { 
   display: flex;
   align-items: center;
+  border-radius: 2px;
+}
+
+.generatedRecipe button { 
+  margin-top: 5%;
 }
 .generatedRecipe h2 { 
   text-decoration: underline;
@@ -63,10 +71,19 @@ p {
   text-underline-offset: 10px;
 }
 
-.generatedRecipe h3, 
-.generatedRecipe p, 
-.generatedRecipe a { 
-  text-align: center;
+.recipeContainer { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipeContainer button { 
+  background-color:  #E8F1F2;
+  border: solid 1px black;
+  color: black;
+  cursor: pointer;
+}
+.recipeContainer a { 
   color: black;
 }
 
@@ -74,7 +91,8 @@ p {
   background-color: #F6828C;
   color: rgb(0, 0, 0);
   border: none;
-  padding: 1.5%;
+  padding: 2.5%;
+  border-radius: 5px;
 }
 
 .userInputForm > form:nth-child(1) {
@@ -84,8 +102,6 @@ p {
 }
 
 .filterInput { 
-  /* background-color: rgb(229, 229, 243); */
-  
   min-width: 80vw;
 }
 .displayRecipes { 
@@ -102,9 +118,10 @@ p {
 
 button { 
   background-color: #F6828C;
-  color: rgb(0, 0, 0);
   border: none;
-  padding: 2%;
+  border-radius: 5px;
+  padding: 2.5%;
+  cursor: pointer;
 }
 
 #recipeFilterSelection { 

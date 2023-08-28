@@ -15,8 +15,10 @@ const DisplayRecipes = ({recipe}) => {
                 <div className="recipeContainer">
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
+                <button>Instructions</button>
                 <p>Ready in {recipe.readyInMinutes} minutes!</p>
                 <a href={recipe.sourceUrl}>Source</a>
+                
                 {/* <h4>Ingredients</h4>
                     <ul>
                         {recipe.analyzedInstructions[0].steps.map((step) => (
@@ -38,8 +40,8 @@ const DisplayRecipes = ({recipe}) => {
                         ))}
                     </ul> */}
                 </div>
-                <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
+            <button onClick={handleRecipeRefresh}>Try a new search!</button>
             </>
             ): (
             <h2>Sorry! Your criteria did not match any of our recipes.</h2>
