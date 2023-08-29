@@ -16,6 +16,7 @@ function App() {
   const [selectedDishType, setSelectedDishType] = useState([]);
   const [selectedCuisine, setSelectedCuisine] = useState([]);
   const [displayRecipe, setDisplayRecipe] = useState(false);
+  
 
   useEffect (() => {
 
@@ -37,6 +38,7 @@ function App() {
         const recipes = res.data.results;
         setAllRecipes(recipes);
         console.log(recipes)
+
       });
     }
 
@@ -53,14 +55,14 @@ function App() {
       window.location.reload();
     }
     
-    if (!displayRecipe){
+    if (!displayRecipe && allRecipes.length === 0){
       return null;
     } else {
       return (
-        <div className="noRecipesFound">
-          <p>Sorry! Your criteria didn't match any of our recipes.</p>
-          <button onClick={handleNewSearch}>Try another search</button>
-        </div>
+          <div className="noRecipesFound">
+            <p>Sorry! Your criteria didn't match any of our recipes.</p>
+            <button onClick={handleNewSearch}>Try another search</button>
+          </div>
       );
     }
   }

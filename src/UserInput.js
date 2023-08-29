@@ -14,6 +14,7 @@ const UserInput = (props) => {
     const [selectedDiet, setSelectedDiet] = useState([]);
     const [selectedDishType, setSelectedDishType] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
+    const [buttonText, setButtonText] = useState("Find me a recipe!")
 
     const handleDietSelection = (userSelection) => { 
         const selectedDietValues = userSelection.map(option => option.value);
@@ -38,6 +39,10 @@ const UserInput = (props) => {
         event.preventDefault();
         props.getRecipes(); 
     };
+
+    const handleButtonUpdate = () => { 
+        setButtonText("Find another recipe!")
+    }
 
     const unselectedOptions = []
 
@@ -116,7 +121,7 @@ const UserInput = (props) => {
                 options={cuisineOptions}> 
                 </Select>
                 </div>
-            <button className="submitButton" type="submit">Find me a recipe!</button>
+            <button className="submitButton" type="submit" onClick={handleButtonUpdate}>{buttonText}</button>
             </form>
         </div>
         

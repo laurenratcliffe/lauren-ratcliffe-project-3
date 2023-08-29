@@ -1,9 +1,10 @@
 // DisplayRecipes.js
 import axios from "axios";
 import {useState} from 'react'
-const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
+const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
+    const [instructionButton, setInstructionButton] = useState('Instructions')
 
     const fetchDetailedRecipe = (recipeId) => {
         axios({
@@ -19,14 +20,13 @@ const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
       };
     
     const handleRecipeRefresh = () => { 
-        // getNewRecipe();
         window.location.reload();
     }
 
     const calculatedMinutes = () => { 
         const minutes = recipe.readyInMinutes
 
-        if (minutes >= 60) { 
+        if (minutes > 60) { 
             return (
                 <p> Ready in 1 hour and {minutes - 60} minutes</p>
             )
@@ -41,7 +41,7 @@ const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
         }
     }
 
-
+   
     const displayDetailedInstructions = () => { 
         if (showInstructions && Object.keys(detailedRecipe).length > 0) {
             return (
@@ -57,11 +57,11 @@ const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
                 <h4>Instructions</h4>
                     <ol>
                         {detailedRecipe.analyzedInstructions[0]?.steps.map((step) => (
-                        <li key={step.number}>{step.step}</li>
-                        ))}
+                            <li key={step.number}>{step.step}</li>))}
+                        
                     </ol>
                 </div>
-                <button onClick={() => setShowInstructions(false)}>Close</button>
+                <button onClick={() => {setShowInstructions(false); setInstructionButton('Instructions')}}>Close Instructions</button>
               </div>
             )
           } else {
@@ -80,7 +80,13 @@ const DisplayRecipes = ({recipe, getNewRecipe, handleNoRecipesFound}) => {
                 <h3>{recipe.title}</h3>
                 {calculatedMinutes()}
                 <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">Source</a>
-                <button onClick={() => { fetchDetailedRecipe(recipe.id); setShowInstructions(true)}}>Instructions</button>
+                <button onClick={() => { 
+                    fetchDetailedRecipe(recipe.id); 
+                    setShowInstructions(true); 
+                    setInstructionButton('')
+                    }}
+                    className={showInstructions ? 'instructionButton' : ''}
+                >{instructionButton}</button>
                 </div>
                 {displayDetailedInstructions()}
                 <button onClick={handleRecipeRefresh}>Try a new search!</button>
