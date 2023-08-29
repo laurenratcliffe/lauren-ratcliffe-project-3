@@ -1,10 +1,18 @@
 // DisplayRecipes.js
 import axios from "axios";
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
-    const [instructionButton, setInstructionButton] = useState('Instructions')
+    const [instructionButton, setInstructionButton] = useState('Show Instructions')
+
+
+
+    useEffect(() => {
+        if (showInstructions && recipe) {
+            fetchDetailedRecipe(recipe.id);
+        }
+    }, [showInstructions, recipe]);
 
     const fetchDetailedRecipe = (recipeId) => {
         axios({
@@ -19,8 +27,11 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         });
       };
     
+    
     const handleRecipeRefresh = () => { 
         window.location.reload();
+        setShowInstructions(true); 
+        ;
     }
 
     const calculatedMinutes = () => { 
@@ -61,7 +72,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
                         
                     </ol>
                 </div>
-                <button onClick={() => {setShowInstructions(false); setInstructionButton('Instructions')}}>Close Instructions</button>
+                <button onClick={() => {setShowInstructions(false); setInstructionButton('Show Instructions')}}>Hide Instructions</button>
               </div>
             )
           } else {
@@ -83,7 +94,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
                 <button onClick={() => { 
                     fetchDetailedRecipe(recipe.id); 
                     setShowInstructions(true); 
-                    setInstructionButton('')
+                    setInstructionButton('Instructions')
                     }}
                     className={showInstructions ? 'instructionButton' : ''}
                 >{instructionButton}</button>
