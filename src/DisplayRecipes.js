@@ -1,6 +1,7 @@
 // DisplayRecipes.js
 import axios from "axios";
 import {useEffect, useState} from 'react'
+
 const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
