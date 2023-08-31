@@ -9,7 +9,12 @@ import { Link, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import RecipeGenerator from './RecipeGenerator'
 import Favourites from './components/Favourites';
+import Login from './components/Login'
 import ErrorPage from './components/ErrorPage';
+
+
+
+
 
 function App() {
 
@@ -20,8 +25,7 @@ function App() {
 
         <Routes>
         <Route path='/home' element={<RecipeGenerator />} />
-        <Route path='/favourites' element={<Favourites />} />
-        <Route path='*' element={<ErrorPage />} />
+        <Route path='/login' element={<Login />} />
         </Routes>
         
       </div>

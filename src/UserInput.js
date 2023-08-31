@@ -86,6 +86,7 @@ const UserInput = (props) => {
     return (
         <>
         <div className="userInputForm">
+            <h1>MAKE ME A MEAL</h1>
             <h2>CHOOSE YOUR PREFERENCES</h2>
             <form onSubmit={handleSubmit}>
                 <div className="filterInput">

@@ -184,6 +184,10 @@ p {
 }
 
 
+.userInputForm h1 { 
+  display: none;
+}
+
 
 .userInputForm button { 
   color: #354441;
@@ -312,7 +316,7 @@ button {
 @media screen and (max-width: 768px) {
  
   .header { 
-    min-height: 4vh;
+    min-height: 5vh;
   }
 
   .links > li:nth-child(1) > a:nth-child(1) {
@@ -329,7 +333,10 @@ button {
   .filterOptions {
     max-width: 100%; 
     background-color: white;
-    height: 40vh;
+    height: 20vh;
+    max-height: 30vh;
+    display: flex;
+    align-items: flex-end;
   }
 
 
@@ -339,22 +346,27 @@ button {
   
 
   .userInputForm {
-  min-width: 100vw;
-  /* background-color: #57736D; */
-  color: white;
-  height: 40vh;
-  margin-top: 5vh;
-  }
-
-  .filterOptions { 
-    max-width: 100%;
-    background-color: white;
-    height: 20vh;
-    max-height: 30vh;
+    min-width: 100vw;
+    color: white;
+    height: auto; 
+    margin-top: 15vh;
     display: flex;
-    align-items: flex-end;
-
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    padding-bottom: 5vh;
+    overflow-y: auto;
   }
+
+  
+    .filterInput {
+      min-width: 70vw;
+      background-color: #57736D;
+      border-radius: 5px;
+      padding: 5% 5%; 
+      margin-top: 2vh; 
+    }
+  
 
 
   .recipeDisplay { 
@@ -364,6 +376,11 @@ button {
     color: #699087;
   }
 
+
+  .userInputForm h1 { 
+    display: block;
+  }
+  
 
   .filterInput { 
     min-width: 70vw;
@@ -376,5 +393,12 @@ button {
     max-width: 100%; 
     padding: 2% 5%; 
     margin-top: 2vh; 
+    background-color: white;
+    box-shadow: none;
 }
+
+  .recipeDisplay p, 
+  .recipeDisplay h1 { 
+    display: none;
+  }
 }
