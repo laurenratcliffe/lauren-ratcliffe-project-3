@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../Firebase';
 
 const provider = new GoogleAuthProvider();
@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault(); 
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
     .then((result ) => { 
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
@@ -19,7 +19,6 @@ const Login = () => {
       const token = credential.accessToken;
       const user = result.user;
     })
-    
   }
 
   return (
