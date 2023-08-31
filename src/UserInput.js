@@ -41,7 +41,7 @@ const UserInput = (props) => {
     };
 
     const handleButtonUpdate = () => { 
-        setButtonText("Find another recipe!")
+        setButtonText("Generate another recipe!")
     }
 
     const unselectedOptions = []
@@ -86,6 +86,7 @@ const UserInput = (props) => {
     return (
         <>
         <div className="userInputForm">
+            <h2>CHOOSE YOUR PREFERENCES</h2>
             <form onSubmit={handleSubmit}>
                 <div className="filterInput">
                 <label >Choose your diet preferences: </label>

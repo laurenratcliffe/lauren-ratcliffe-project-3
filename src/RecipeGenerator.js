@@ -83,22 +83,27 @@ function RecipeGenerator() {
 
   return (
     <div className='recipeGenerator'>
-      <h1>MAKE ME A MEAL!</h1>
-      <p>It's important to make smart decisions when it comes to your health. This recipe generator is made to make your meal decisions a bit easier!</p>
-      <UserInput
-        selectedDiet={selectedDiet}
-        selectedDishType={selectedDishType}
-        selectedCuisine={selectedCuisine}
-        onDietChange={handleDietSelection}
-        onDishTypeChange={handleDishTypeSelection}
-        onCuisineChange={handleCuisineSelection}
-        getRecipes={handleGetRecipes}
-      />
-      <DisplayRecipes
+      <div className='recipeDisplay'> 
+        <h1>MAKE ME A MEAL!</h1>
+        <p>It's important to make smart decisions when it comes to your health. This recipe generator is made to make your meal decisions a bit easier!</p>
+            
+        <DisplayRecipes
         recipe={allRecipes[0]}
         getNewRecipe={fetchRandomRecipe}
         handleNoRecipesFound={handleNoRecipesFound}
-      />
+        />
+      </div>
+      <div className='filterOptions'>
+        <UserInput
+          selectedDiet={selectedDiet}
+          selectedDishType={selectedDishType}
+          selectedCuisine={selectedCuisine}
+          onDietChange={handleDietSelection}
+          onDishTypeChange={handleDishTypeSelection}
+          onCuisineChange={handleCuisineSelection}
+          getRecipes={handleGetRecipes}
+        />
+      </div>
     </div>
   );
 }

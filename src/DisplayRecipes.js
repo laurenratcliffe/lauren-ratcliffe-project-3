@@ -73,7 +73,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
                         
                     </ol>
                 </div>
-                <button onClick={() => {setShowInstructions(false); setInstructionButton('Show Instructions')}}>Hide Instructions</button>
+                <button className="button" onClick={() => {setShowInstructions(false); setInstructionButton('Show Instructions')}}>Hide Instructions</button>
               </div>
             )
           } else {
@@ -86,7 +86,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
             {recipe ? (
             <>
             <div className="generatedRecipe">
-            <h2>CHECK OUT THIS RECIPE!</h2>
+            {/* <h2>CHECK OUT THIS RECIPE!</h2> */}
                 <div className="recipeContainer">
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
@@ -101,7 +101,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
                 >{instructionButton}</button>
                 </div>
                 {displayDetailedInstructions()}
-                <button onClick={handleRecipeRefresh}>Try a new search!</button>
+                <button className="button" onClick={handleRecipeRefresh}>Try a new search!</button>
             </div>
             </>
             ): (

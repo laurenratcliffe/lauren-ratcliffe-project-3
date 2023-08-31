@@ -8,7 +8,7 @@ html { box-sizing: border-box;}
 
 
 body { 
-  background-color: #E8F1F2;
+  background-color: rgb(255, 255, 255);
   color: black;
   display: flex;
   flex-direction: column;
@@ -17,15 +17,17 @@ body {
 .header { 
   position: absolute;
   top: 0;
-  left: 0;
   width: 100vw;
-  background-color: rgba(8, 99, 117, 0.5);
+  background-color: #699087;
   color: black;
   list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1%;
+  align-items: center;
+  color: white;
+  min-height: 5vw;
+  z-index: 100; 
 }
 
 .header ul { 
@@ -42,6 +44,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   text-decoration: none;
+  
 }
 
 .logo { 
@@ -49,7 +52,7 @@ body {
 }
 
 .links li a { 
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   padding-right: 3em;
 }
@@ -59,41 +62,62 @@ body {
   cursor: pointer;
 }
 
+
+.app { 
+  display: flex;
+  flex-direction: row;
+}
+
 h1 {
   margin-top: 5vh;
-  padding: 0;
   line-height: 1.5em;
-  text-decoration: underline;
-  text-decoration-color: #086375;
-  text-underline-offset: 10px;
+  color: #354441;
   word-break: normal;
   text-align: center;
 }
 
 p { 
   max-width: 80vw;
+  text-align: center;
 }
 .appContainer { 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 7%;
   flex: 1;
   min-height: 100vh;
 }
 
 .recipeGenerator { 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  color: rgb(0, 0, 0);
+  color: white;
   border-radius: 15px;
-  padding: 5%;
+  min-height: 100vh;
 }
-.userInputForm { 
-  min-width: 80vw;
+
+
+.recipeDisplay { 
+  color: #354441;
+  display: flex;
+  flex-direction: column;
+  min-width: 70vw; 
+  padding: 2% 7%;
+  justify-content: center;
+  margin-top: 5vh;
+  background-color: rgba(217, 217, 217, 0.22); 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
+
+.filterOptions { 
+  max-width: 30vw;
+  flex: 1;
+  background-color: #57736D; 
+}
+
 .generatedRecipe { 
   display: flex;
   flex-direction: column;
@@ -101,11 +125,10 @@ p {
   justify-content: center;
   padding: 5%;
   margin-top: 2%;
-  border-radius: 5px;
-  min-width: 70vw;
-  background-color: white;
-  border: solid 1px #086375;
+  background-color: rgba(217, 217, 217, 0.22);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1)
 }
+
 .generatedRecipe img { 
   display: flex;
   align-items: center;
@@ -113,25 +136,25 @@ p {
 }
 
 .generatedRecipe button { 
-  color: black;
-  border: none;
+  background-color:  white;
+  color: #354441;
+  cursor: pointer;
+  border: solid 1px #699087;
   border-radius: 5px;
   padding: 2.5%;
   cursor: pointer;
-  /* min-width: 30vw; */
+  min-width: 30vw;
   margin-top: 2%;
-  margin-right: 20vw;
-  margin-left: 20vw;
-  /* min-width: 40vw;
-  padding: 2%; */
+
 }
-.generatedRecipe h2 { 
+
+/* .generatedRecipe h2 { 
   text-decoration: underline;
   text-decoration-color: #086375;
   text-underline-offset: 10px;
   line-height: 1.5em;
   text-align: center;
-}
+} */
 
 .recipeContainer { 
   display: flex; 
@@ -139,26 +162,36 @@ p {
   align-items: center;
 }
 
-.recipeContainer button { 
-  background-color:  #ffffff;
-  border: solid 1.5px #FFB6C1;
-  color: black;
+.recipeContainer button, 
+.detailedInstructionsOverlay button { 
+  
+  color: white;
   cursor: pointer;
+  background-color: #699087;
 }
+
 .recipeContainer a { 
   color: black;
 }
 
+.userInputForm { 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 30vw;
+  align-items: center;
+}
+
+
+
 .userInputForm button { 
-  color: black;
+  color: #354441;
   border: none;
   border-radius: 5px;
   padding: 2.5%;
   cursor: pointer;
-  /* min-width: 30vw; */
   margin-top: 2%;
-  margin-right: 20vw;
-  margin-left: 20vw;
   max-width: 25vw;
 }
 
@@ -166,33 +199,49 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 30vw;
+}
+
+.filterInput label { 
+  color: white;
 }
 
 .filterInput { 
-  min-width: 80vw;
+  color: black;
+  min-width: 25vw;
 }
+
+.userInputForm > h2:nth-child(1) {
+  color: white;
+  text-align: center;
+}
+
+form { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .displayRecipes { 
   border: solid 1px black;
 }
 
 .submitButton { 
-  width: 30%;
+  min-width: 20vw;
   padding: 1%;
   margin: 2%;
   border-radius: 2px;
   box-shadow: none;
-  color: black;
+  color: #354441;
 }
 
 button { 
-  background-color: #FFB6C1;
   color: black;
   border: none;
   border-radius: 5px;
   padding: 2.5%;
   cursor: pointer;
-  /* min-width: 30vw; */
   margin-top: 2%;
   margin-right: 20vw;
   margin-left: 20vw;
@@ -211,33 +260,22 @@ button {
 }
 
 .detailedInstructionsOverlay {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  z-index: 100;
-  /* height: 100vh; */
 }
 
 .detailedInstructions {
-  background-color: white;
-  padding: 20px;
-  /* border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2% 15%;
+  margin-top: 2%;
 }
 
-.detailedInstructionsOverlay button {
-  margin-top: 10px;
-  background-color:  #ffffff;
-  border: solid 1.5px #FFB6C1;
-  color: black;
-  cursor: pointer;
+.button {
+  max-width: 20vw;
 }
 
 
@@ -265,3 +303,78 @@ button {
   align-items: center;
   margin-top: 30vh;
 } */ 
+
+
+
+
+/* Media Queries  */
+
+@media screen and (max-width: 768px) {
+ 
+  .header { 
+    min-height: 4vh;
+  }
+
+  .links > li:nth-child(1) > a:nth-child(1) {
+    padding-right: 1em;
+  }
+  
+
+  .recipeGenerator {
+    flex-direction: column-reverse;
+    align-items: center;
+    
+  }
+
+  .filterOptions {
+    max-width: 100%; 
+    background-color: white;
+    height: 40vh;
+  }
+
+
+  .userInputForm > h2:nth-child(1) {
+    color: #57736D;
+  }
+  
+
+  .userInputForm {
+  min-width: 100vw;
+  /* background-color: #57736D; */
+  color: white;
+  height: 40vh;
+  margin-top: 5vh;
+  }
+
+  .filterOptions { 
+    max-width: 100%;
+    background-color: white;
+    height: 20vh;
+    max-height: 30vh;
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+
+  .recipeDisplay { 
+    margin: 0 2%;
+  }
+  .userInputForm h2 { 
+    color: #699087;
+  }
+
+
+  .filterInput { 
+    min-width: 70vw;
+    background-color: #57736D;
+    border-radius: 5px;
+    padding: 10% 5%;
+  }
+
+  .recipeDisplay {
+    max-width: 100%; 
+    padding: 2% 5%; 
+    margin-top: 2vh; 
+}
+}

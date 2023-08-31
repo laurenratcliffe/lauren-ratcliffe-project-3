@@ -13,11 +13,10 @@ import ErrorPage from './components/ErrorPage';
 
 function App() {
 
-
   return (
     <div className='appContainer'>
+      <Header />
       <div className='app'> 
-        <Header />
 
         <Routes>
         <Route path='/home' element={<RecipeGenerator />} />
