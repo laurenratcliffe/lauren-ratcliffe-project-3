@@ -12,7 +12,7 @@ function Header() {
               <Link to="/home">Home</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Favourites</Link>
             </li>
         </div>
       </nav>

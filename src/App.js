@@ -25,7 +25,7 @@ function App() {
 
         <Routes>
         <Route path='/home' element={<RecipeGenerator />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Favourites />} />
         </Routes>
         
       </div>

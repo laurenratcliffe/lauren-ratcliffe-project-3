@@ -1,12 +1,13 @@
 // DisplayRecipes.js
 import axios from "axios";
 import {useEffect, useState} from 'react'
+import { getDatabase, ref, update } from 'firebase/database';
+
 
 const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
     const [instructionButton, setInstructionButton] = useState('Show Instructions')
-
 
 
     useEffect(() => {
@@ -30,9 +31,9 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     
     
     const handleRecipeRefresh = () => { 
+        
         window.location.reload();
         setShowInstructions(true); 
-        ;
     }
 
     const calculatedMinutes = () => { 
@@ -53,7 +54,18 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         }
     }
 
-   
+    const handleFavouriteRecipe = () => { 
+        const db = getDatabase();
+        const favoriteRecipes = ref(db, 'favorites');
+        update(favoriteRecipes, {
+            [recipe.id]: recipe,
+        });
+         
+          
+        
+              
+        }
+
     const displayDetailedInstructions = () => { 
         if (showInstructions && Object.keys(detailedRecipe).length > 0) {
             return (
@@ -79,7 +91,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
           } else {
             return null;
           } 
-    }
+        }
     
     return (
         <section>
@@ -88,6 +100,10 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
             <div className="generatedRecipe">
             {/* <h2>CHECK OUT THIS RECIPE!</h2> */}
                 <div className="recipeContainer">
+                <button
+                    className="button"
+                    onClick={handleFavouriteRecipe}
+                    >Add to Favourites</button>
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
                 {calculatedMinutes()}
@@ -110,5 +126,4 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         </section>
     );
 }
-
 export default DisplayRecipes;
