@@ -139,7 +139,7 @@ p {
   background-color:  white;
   color: #354441;
   cursor: pointer;
-  border: solid 1px #699087;
+  border: solid 1px rgb(105, 144, 135);
   border-radius: 5px;
   padding: 2.5%;
   cursor: pointer;
@@ -291,6 +291,39 @@ button {
   display: none;
 }
 
+
+.favouritesContainer { 
+  display: flex;
+  flex-direction: column;
+  margin-top: 15vh;
+}
+
+.favouritedRecipe { 
+  display: flex;
+  flex-direction: row;
+  padding: 2vh;
+  background-color: rgba(217, 217, 217, 0.22);
+  margin: 2%;
+  border-radius: 5px;
+}
+
+.favouritedRecipe img { 
+  border-radius: 5px;;
+}
+
+.recipeInfo { 
+  background-color: rgba(254, 254, 254, 0.619);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.recipeInfo a { 
+  color: black;
+  
+}
+
+
+
 /* .footer { 
   position: absolute;
   bottom: -130;
@@ -428,3 +461,5 @@ button {
     display: none;
   }
 }
+
+

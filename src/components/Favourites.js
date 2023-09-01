@@ -38,17 +38,20 @@ return (
  <>
  <div className='favouritesContainer'>
   <h1>Your Favourite Recipes</h1>
-  <div className="favouritedRecipe">
-      <ul>
+  <div>
+      <ul >
         {firebaseFavourites.map((favourite, index) => (
-          <li key={index}>
+          <li key={index} className="favouritedRecipe">
             <img src={favourite.image} alt={favourite.title} />
+            <div className='recipeInfo'>
             <p>{favourite.title}</p>
+            <a href={favourite.sourceUrl} target="_blank" rel="noreferrer">Source</a>
             <button onClick={() => handleRemoveFavourites(favourite.id)}>Remove from Favourites</button>
+            </div>
+          
           </li>
         ))}
       </ul>
-      
         </div>
  </div>
  
