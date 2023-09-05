@@ -14,7 +14,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
         if (showInstructions && recipe) {
             fetchDetailedRecipe(recipe.id);
         }
-        checkIfFavorited();
+        
         
     }, [showInstructions, recipe]);
 
