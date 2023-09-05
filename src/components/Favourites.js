@@ -2,15 +2,14 @@
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import firebase from '../Firebase'
-import UserInput from '../UserInput';
 
 
 
 
 function Favourites (){ 
   const [firebaseFavourites, setFirebaseFavourites] = useState([]);
-  const [showInstructions, setShowInstructions] = useState(false);
-  const [instructionButton, setInstructionButton] = useState('Show Instructions')
+  // const [showInstructions, setShowInstructions] = useState(false);
+  // const [instructionButton, setInstructionButton] = useState('Show Instructions')
 
 
   useEffect(() => {
