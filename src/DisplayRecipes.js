@@ -8,14 +8,20 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
     const [instructionButton, setInstructionButton] = useState('Show Instructions')
-
+    const [favorited, setFavorited] = useState('Save to Favourites');
 
     useEffect(() => {
         if (showInstructions && recipe) {
             fetchDetailedRecipe(recipe.id);
         }
+        checkIfFavorited();
     }, [showInstructions, recipe]);
 
+    const checkIfFavorited = () => {
+        setFavorited(recipe && recipe.favorited ? 'Remove from Favourites' : 'Save to Favourites');
+      };
+
+    
     const fetchDetailedRecipe = (recipeId) => {
         axios({
           url: `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`,
@@ -54,17 +60,24 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         }
     }
 
-    const handleFavouriteRecipe = () => { 
+    const handleFavoriteRecipe = () => { 
         const db = getDatabase();
         const favoriteRecipes = ref(db, 'favorites');
-        update(favoriteRecipes, {
-            [recipe.id]: recipe,
-        });
-         
-          
         
-              
+        if (favorited === 'Save to Favourites') {
+         
+          update(favoriteRecipes, {
+            [recipe.id]: recipe,
+          });
+          setFavorited('Remove from Favourites');
+        } else {
+         
+          update(favoriteRecipes, {
+            [recipe.id]: null,
+          });
+          setFavorited('Save to Favourites');
         }
+      };
 
     const displayDetailedInstructions = () => { 
         if (showInstructions && Object.keys(detailedRecipe).length > 0) {
@@ -101,9 +114,10 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
             {/* <h2>CHECK OUT THIS RECIPE!</h2> */}
                 <div className="recipeContainer">
                 <button
-                    className="button"
-                    onClick={handleFavouriteRecipe}
-                    >Add to Favourites</button>
+                    className="favouriteButton"
+                    onClick={handleFavoriteRecipe}
+                    >{favorited}</button>
+
                 <img src={recipe.image} alt={recipe.title} />
                 <h3>{recipe.title}</h3>
                 {calculatedMinutes()}
