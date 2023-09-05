@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+
+
+// App.js 
+// - render UserInput.js and DisplayRecipes.js to app.js
+// - create a getRecipes function that will perform the API call - pass results to userInputs component.
+
 import './App.css';
+import { Link, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import RecipeGenerator from './RecipeGenerator'
+import Favourites from './components/Favourites';
+import Login from './components/Login'
+import ErrorPage from './components/ErrorPage';
+
+
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='appContainer'>
+      <Header />
+      <div className='app'> 
+
+        <Routes>
+        <Route path='/home' element={<RecipeGenerator />} />
+        <Route path='/login' element={<Favourites />} />
+        </Routes>
+        
+      </div>
     </div>
   );
 }
-
 export default App;
