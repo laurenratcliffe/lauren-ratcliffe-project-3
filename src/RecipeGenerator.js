@@ -10,17 +10,28 @@ import './App.css';
 
 
 function RecipeGenerator() {
+    const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [allRecipes, setAllRecipes] = useState([]);
     const [selectedDiet, setSelectedDiet] = useState([""]);
     const [selectedDishType, setSelectedDishType] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [displayRecipe, setDisplayRecipe] = useState(false);
     
-    // const [favoritedRecipes, setFavoritedRecipes] = useState([]); 
-    // const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
+    
+    const fetchDetailedRecipe = (recipeId) => {
+      axios({
+        url: `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`,
+        method: "GET",
+      }).then((res) => {
+        const detailedRecipeData = res.data;
+        setDetailedRecipe(detailedRecipeData);
+      });
+    };
+
+
 
     useEffect (() => {
-  
+      
     },[selectedDiet, selectedCuisine, selectedDishType])
   
     const fetchRandomRecipe = () => { 
@@ -38,8 +49,6 @@ function RecipeGenerator() {
         }).then((res) => { 
           const recipes = res.data.results;
           setAllRecipes(recipes);
-          console.log(recipes)
-  
         });
       }
   
@@ -93,6 +102,7 @@ function RecipeGenerator() {
         recipe={allRecipes[0]}
         getNewRecipe={fetchRandomRecipe}
         handleNoRecipesFound={handleNoRecipesFound}
+        fetchDetailedRecipe={fetchDetailedRecipe}
         />
       </div>
       <div className='filterOptions'>

@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react'
 import { getDatabase, ref, update } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 
-const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
+const DisplayRecipes = ({recipe, handleNoRecipesFound, fetchDetailedRecipe}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
     const [instructionButton, setInstructionButton] = useState('Show Instructions')
@@ -15,23 +15,17 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
             fetchDetailedRecipe(recipe.id);
         }
         checkIfFavorited();
+        
     }, [showInstructions, recipe]);
 
-    const fetchDetailedRecipe = (recipeId) => {
-        axios({
-          url: `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`,
-          method: "GET",
-        }).then((res) => {
-          const detailedRecipeData = res.data;
-          setDetailedRecipe(detailedRecipeData);
-        });
-      };
+   
     
     const checkIfFavorited = () => {
     setFavorited(recipe && recipe.favorited ? 'Remove from Favourites' : 'Save to Favourites');
     };
 
     const handleRecipeRefresh = () => {   
+        localStorage.removeItem('selectedRecipeId');
         window.location.reload();
         setShowInstructions(true); 
     }
@@ -84,6 +78,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
               setFavorited('Save to Favourites');
             }
     }
+    
     generateUserId()
 };
 
