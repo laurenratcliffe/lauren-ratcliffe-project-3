@@ -2,7 +2,7 @@
 import axios from "axios";
 import {useEffect, useState} from 'react'
 import { getDatabase, ref, update } from 'firebase/database';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
@@ -17,27 +17,21 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         checkIfFavorited();
     }, [showInstructions, recipe]);
 
-    const checkIfFavorited = () => {
-        setFavorited(recipe && recipe.favorited ? 'Remove from Favourites' : 'Save to Favourites');
-      };
-
-    
     const fetchDetailedRecipe = (recipeId) => {
         axios({
           url: `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`,
           method: "GET",
         }).then((res) => {
           const detailedRecipeData = res.data;
-        //   const recipeId = recipe.id;
-        //   console.log(recipeId)
-          console.log(detailedRecipeData);
           setDetailedRecipe(detailedRecipeData);
         });
       };
     
-    
-    const handleRecipeRefresh = () => { 
-        
+    const checkIfFavorited = () => {
+    setFavorited(recipe && recipe.favorited ? 'Remove from Favourites' : 'Save to Favourites');
+    };
+
+    const handleRecipeRefresh = () => {   
         window.location.reload();
         setShowInstructions(true); 
     }
@@ -60,24 +54,38 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
         }
     }
 
-    const handleFavoriteRecipe = () => { 
-        const db = getDatabase();
-        const favoriteRecipes = ref(db, 'favorites');
-        
-        if (favorited === 'Save to Favourites') {
-         
-          update(favoriteRecipes, {
-            [recipe.id]: recipe,
-          });
-          setFavorited('Remove from Favourites');
-        } else {
-         
-          update(favoriteRecipes, {
-            [recipe.id]: null,
-          });
-          setFavorited('Save to Favourites');
-        }
+
+    const generateUserId = () => {
+        const userId = localStorage.getItem('userId') || uuidv4();
+        localStorage.setItem('userId', userId);
       };
+    
+      const getUserId = () => {
+        return localStorage.getItem('userId');
+      };
+
+
+    const handleFavoriteRecipe = () => { 
+    const db = getDatabase();
+    const userId = getUserId(); 
+
+    if (userId) {
+      const favoriteRecipes = ref(db, `users/${userId}/favorites`); 
+      if (favorited === 'Save to Favourites') {
+              update(favoriteRecipes, {
+                [recipe.id]: recipe,
+              });
+              setFavorited('Remove from Favourites');
+            } else {
+             
+              update(favoriteRecipes, {
+                [recipe.id]: null,
+              });
+              setFavorited('Save to Favourites');
+            }
+    }
+    generateUserId()
+};
 
     const displayDetailedInstructions = () => { 
         if (showInstructions && Object.keys(detailedRecipe).length > 0) {
@@ -111,7 +119,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
             {recipe ? (
             <>
             <div className="generatedRecipe">
-            
+           
                 <div className="recipeContainer">
                 <button
                     className="favouriteButton"
@@ -127,7 +135,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound}) => {
                     setShowInstructions(true); 
                     setInstructionButton('Instructions')
                     }}
-                    className={showInstructions ? 'instructionButton' : ''}
+                    className='submitButton'
                 >{instructionButton}</button>
                 </div>
                 {displayDetailedInstructions()}
