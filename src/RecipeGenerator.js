@@ -16,8 +16,8 @@ function RecipeGenerator() {
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [displayRecipe, setDisplayRecipe] = useState(false);
     
-    const [favoritedRecipes, setFavoritedRecipes] = useState([]); 
-    const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
+    // const [favoritedRecipes, setFavoritedRecipes] = useState([]); 
+    // const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
 
     useEffect (() => {
   
