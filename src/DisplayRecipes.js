@@ -14,8 +14,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
         if (showInstructions && recipe) {
             fetchDetailedRecipe(recipe.id);
         }
-        
-        
+          
     }, [showInstructions, recipe]);
 
     const fetchDetailedRecipe = (recipeId) => {
