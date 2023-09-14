@@ -110,7 +110,7 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
                         
                     </ol>
                 </div>
-                <button className="button" onClick={() => {setShowInstructions(false); setInstructionButton('Show Instructions')}}>Hide Instructions</button>
+                <button className="button" onClick={() => setShowInstructions(false)}>Hide Instructions</button>
               </div>
             )
           } else {

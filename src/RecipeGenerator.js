@@ -22,8 +22,8 @@ function RecipeGenerator() {
 
 
     useEffect (() => {
-      
-    },[selectedDiet, selectedCuisine, selectedDishType])
+    
+    },[selectedDiet, selectedCuisine, selectedDishType, allRecipes])
   
     const fetchRandomRecipe = () => { 
         axios({
@@ -56,7 +56,7 @@ function RecipeGenerator() {
         window.location.reload();
       }
       
-      if (!displayRecipe && allRecipes.length === 0){
+      if (allRecipes.length === 0){
         return null;
       } else {
         return (
@@ -86,14 +86,13 @@ function RecipeGenerator() {
   return (
     <div className='recipeGenerator'>
       <div className='recipeDisplay'> 
-        <h1>MAKE ME A MEAL!</h1>
-        <p>It's important to make smart decisions when it comes to your health. This recipe generator is made to make your meal decisions a bit easier!</p>
+        {/* <h1>MAKE ME A MEAL!</h1>
+        <p>It's important to make smart decisions when it comes to your health. This recipe generator is made to make your meal decisions a bit easier!</p> */}
             
         <DisplayRecipes
         recipe={allRecipes[0]}
         getNewRecipe={fetchRandomRecipe}
         handleNoRecipesFound={handleNoRecipesFound}
-        
         />
       </div>
       <div className='filterOptions'>
