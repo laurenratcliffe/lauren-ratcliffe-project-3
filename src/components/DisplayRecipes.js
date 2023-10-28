@@ -56,7 +56,6 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
         }
     }
 
-
     const generateUserId = () => {
         const userId = localStorage.getItem('userId') || uuidv4();
         localStorage.setItem('userId', userId);
