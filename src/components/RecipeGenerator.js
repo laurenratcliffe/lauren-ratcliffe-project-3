@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserInput from './UserInput';
 import DisplayRecipes from './DisplayRecipes';
-import './App.css';
+import '../App.css';
 
 
 

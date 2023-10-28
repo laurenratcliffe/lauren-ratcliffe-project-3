@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
-import firebase from '../Firebase'
+import firebase from './Firebase'
 import { v4 as uuidv4 } from 'uuid';
 
 
