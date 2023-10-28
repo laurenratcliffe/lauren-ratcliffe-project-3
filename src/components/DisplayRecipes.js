@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react'
 import { getDatabase, ref, update } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 
-const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
+const DisplayRecipes = ({ recipe }) => {
     const [detailedRecipe, setDetailedRecipe] = useState([]);
     const [showInstructions, setShowInstructions] = useState(false);
     const [instructionButton, setInstructionButton] = useState('Show Instructions')
@@ -145,7 +145,8 @@ const DisplayRecipes = ({recipe, handleNoRecipesFound }) => {
             </div>
             </>
             ): (
-            handleNoRecipesFound()
+            // handleNoRecipesFound()
+            null
             )}
         </section>
     );

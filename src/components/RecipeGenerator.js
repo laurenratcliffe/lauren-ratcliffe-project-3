@@ -6,9 +6,6 @@ import DisplayRecipes from './DisplayRecipes';
 import '../App.css';
 
 
-
-
-
 function RecipeGenerator() {
    
     const [allRecipes, setAllRecipes] = useState([]);
@@ -16,10 +13,8 @@ function RecipeGenerator() {
     const [selectedDishType, setSelectedDishType] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [displayRecipe, setDisplayRecipe] = useState(false);
-    
-    
-   
-
+    const [noRecipesFound, setNoRecipesFound] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(""); 
 
     useEffect (() => {
     
@@ -40,34 +35,22 @@ function RecipeGenerator() {
         }).then((res) => { 
           const recipes = res.data.results;
           setAllRecipes(recipes);
+          if (recipes.length === 0) {
+            setNoRecipesFound(true);
+          } else {
+            setNoRecipesFound(false);
+            setNoRecipesFound(recipes.length === 0);
+          }
         });
       }
-  
-  
-      console.log(allRecipes);
     
+   
+
     const handleGetRecipes = () => {
       setDisplayRecipe(true); 
       fetchRandomRecipe(); 
-    };
-  
-    const handleNoRecipesFound = () => { 
-      const handleNewSearch = () => { 
-        window.location.reload();
-      }
-      
-      if (allRecipes.length === 0){
-        return null;
-      } else {
-        return (
-            <div className="noRecipesFound">
-              <p>Sorry! Your criteria didn't match any of our recipes.</p>
-              <button onClick={handleNewSearch}>Try another search</button>
-            </div>
-        );
-      }
     }
-  
+
     const handleDietSelection = (selectedOptions) => { 
       setSelectedDiet(selectedOptions);
       setDisplayRecipe(false);
@@ -85,14 +68,10 @@ function RecipeGenerator() {
 
   return (
     <div className='recipeGenerator'>
-      <div className='recipeDisplay'> 
-        {/* <h1>MAKE ME A MEAL!</h1>
-        <p>It's important to make smart decisions when it comes to your health. This recipe generator is made to make your meal decisions a bit easier!</p> */}
-            
+      <div className='recipeDisplay'>   
         <DisplayRecipes
         recipe={allRecipes[0]}
         getNewRecipe={fetchRandomRecipe}
-        handleNoRecipesFound={handleNoRecipesFound}
         />
       </div>
       <div className='filterOptions'>
@@ -104,6 +83,9 @@ function RecipeGenerator() {
           onDishTypeChange={handleDishTypeSelection}
           onCuisineChange={handleCuisineSelection}
           getRecipes={handleGetRecipes}
+          recipe={allRecipes[0]}
+          allRecipes={allRecipes}
+          noRecipesFound={noRecipesFound}
         />
       </div>
     </div>

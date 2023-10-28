@@ -1,47 +1,40 @@
-// UserInput.js
 
 import { useState } from "react";
 import Select from 'react-select';
-
-
-// UserInput.js 
-// - create a filtering component to collect user inputs (dietary restrictions, meal type, cuisine type)
-// - create handleUserInputChange function to handle filter choices by user
-// - call the getRecipes function and pass the user inputs as arguments when the user submits the form
-// - pass fetched/filtered recipes back to app.js and then to DisplayRecipes.js as props
 
 const UserInput = (props) => {
     const [selectedDiet, setSelectedDiet] = useState([]);
     const [selectedDishType, setSelectedDishType] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
-    const [buttonText, setButtonText] = useState("Find me a recipe!")
+    const [buttonText, setButtonText] = useState("Find me a recipe!");
+    
 
-    const handleDietSelection = (userSelection) => { 
+    const handleDietSelection = (userSelection) => {
         const selectedDietValues = userSelection.map(option => option.value);
         setSelectedDiet(userSelection);
         props.onDietChange(selectedDietValues);
     }
 
-    const handleDishTypeSelection = (userSelection) => { 
+    const handleDishTypeSelection = (userSelection) => {
         const selectedDishTypeValues = userSelection.map(option => option.value);
-        setSelectedDishType(userSelection)
-        props.onDishTypeChange(selectedDishTypeValues)
+        setSelectedDishType(userSelection);
+        props.onDishTypeChange(selectedDishTypeValues);
     }
 
-    const handleCuisineSelection = (userSelection) => { 
+    const handleCuisineSelection = (userSelection) => {
         const selectedCuisineValues = userSelection.map(option => option.value);
-        setSelectedCuisine(userSelection)
-        props.onCuisineChange(selectedCuisineValues)
+        setSelectedCuisine(userSelection);
+        props.onCuisineChange(selectedCuisineValues);
     }
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.getRecipes(); 
+        props.getRecipes();
     };
 
-    const handleButtonUpdate = () => { 
-        setButtonText("Generate another recipe!")
+
+    const handleButtonUpdate = () => {
+        setButtonText("Generate another recipe!");
     }
 
     const unselectedOptions = []
@@ -124,6 +117,9 @@ const UserInput = (props) => {
                 </Select>
                 </div>
             <button className="submitButton" type="submit" onClick={handleButtonUpdate}>{buttonText}</button>
+            {props.noRecipesFound && (
+                <p>Sorry! Your search doesn't have any matches. Try again</p>
+            )}
             </form>
         </div>
         
